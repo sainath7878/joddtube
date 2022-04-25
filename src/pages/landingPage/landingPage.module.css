@@ -4,7 +4,7 @@
 
 .allVideos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(31rem, 1fr));
   row-gap: 3rem;
   padding: 0 4.5rem 3rem 4.5rem;
 }
