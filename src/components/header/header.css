@@ -1,0 +1,57 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--Z-INDEX-10);
+}
+
+.navigation {
+  padding: 1rem 2rem;
+  align-items: center;
+  background-color: var(--COLOR-BACKGROUND);
+}
+
+.brand-text {
+  font-family: "Merienda One", cursive;
+}
+
+.text-badge {
+  top: -1.2rem;
+  left: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--BACKGROUND-COLOR);
+}
+
+.hamburger {
+  background: transparent;
+  color: var(--SECONDARY-COLOR);
+}
+
+.hamburger:hover {
+  background-color: transparent;
+}
+
+.logout {
+  cursor: pointer;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--COLOR-PRIMARY);
+}
+
+.login > p {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-section > * {
+    margin-right: 5px;
+  }
+}
