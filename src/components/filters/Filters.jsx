@@ -15,7 +15,16 @@ function Filters() {
         className={`btn  ${
           filters.all ? "btn-secondary" : `${styles.btnSecondaryOutline}`
         } ${styles.btn}`}
-        onClick={(prev) => setFilters({ ...prev, all: true })}
+        onClick={() =>
+          setFilters({
+            ...filters,
+            all: true,
+            valorant: false,
+            gta: false,
+            csgo: false,
+            bgmi: false,
+          })
+        }
       >
         All
       </button>
@@ -23,7 +32,16 @@ function Filters() {
         className={`btn  ${
           filters.valorant ? "btn-secondary" : `${styles.btnSecondaryOutline}`
         } ${styles.btn}`}
-        onClick={(prev) => setFilters({ ...prev, all: false, valorant: true })}
+        onClick={() =>
+          setFilters({
+            ...filters,
+            valorant: true,
+            all: false,
+            gta: false,
+            csgo: false,
+            bgmi: false,
+          })
+        }
       >
         Valorant
       </button>
@@ -31,7 +49,16 @@ function Filters() {
         className={`btn  ${
           filters.gta ? "btn-secondary" : `${styles.btnSecondaryOutline}`
         } ${styles.btn}`}
-        onClick={(prev) => setFilters({ ...prev, all: false, gta: true })}
+        onClick={() =>
+          setFilters({
+            ...filters,
+            gta: true,
+            valorant: false,
+            all: false,
+            csgo: false,
+            bgmi: false,
+          })
+        }
       >
         GTA V
       </button>
@@ -39,7 +66,16 @@ function Filters() {
         className={`btn  ${
           filters.csgo ? "btn-secondary" : `${styles.btnSecondaryOutline}`
         } ${styles.btn}`}
-        onClick={(prev) => setFilters({ ...prev, all: false, csgo: true })}
+        onClick={() =>
+          setFilters((prev) => ({
+            ...prev,
+            csgo: true,
+            all: false,
+            valorant: false,
+            gta: false,
+            bgmi: false,
+          }))
+        }
       >
         CS GO
       </button>
@@ -47,7 +83,16 @@ function Filters() {
         className={`btn  ${
           filters.bgmi ? "btn-secondary" : `${styles.btnSecondaryOutline}`
         } ${styles.btn}`}
-        onClick={(prev) => setFilters({ ...prev, all: false, bgmi: true })}
+        onClick={() =>
+          setFilters((prev) => ({
+            ...prev,
+            bgmi: true,
+            all: false,
+            valorant: false,
+            gta: false,
+            csgo: false,
+          }))
+        }
       >
         BGMI
       </button>

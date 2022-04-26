@@ -48,11 +48,19 @@
 
 .videoDetails {
   display: flex;
+  align-items: center;
   gap: 5px;
 
   padding: 0 5.5rem;
   color: var(--COLOR-CARD-FOOTER);
   font-size: 1.2rem;
+}
+
+.dotSeparator {
+  background-color: var(--COLOR-CARD-FOOTER);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
 }
 
 .moreOption {

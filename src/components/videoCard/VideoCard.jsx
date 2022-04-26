@@ -82,6 +82,7 @@ function VideoCard({
       </div>
       <div className={styles.videoDetails}>
         <p>{views} views</p>
+        <p className={styles.dotSeparator}></p>
         <p>{uploaded}</p>
       </div>
     </div>
