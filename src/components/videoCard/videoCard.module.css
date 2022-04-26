@@ -1,0 +1,107 @@
+.card {
+  min-height: 29rem;
+  background-color: var(--COLOR-CARD-BACKGROUND);
+  border: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  justify-content: space-around;
+}
+
+.cardImage {
+  height: 18rem;
+  object-position: top center;
+}
+
+.length {
+  position: absolute;
+  top: 54%;
+  right: 5px;
+
+  background-color: var(--COLOR-BACKGROUND);
+  padding: 3px;
+  opacity: 0.8;
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+
+.cardBody {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 0 0.5rem;
+  position: relative;
+  width: 95%;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  padding: 0 5.5rem;
+  color: var(--COLOR-CARD-FOOTER);
+  font-size: 1.2rem;
+}
+
+.videoDetails {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 0 5.5rem;
+  color: var(--COLOR-CARD-FOOTER);
+  font-size: 1.2rem;
+}
+
+.dotSeparator {
+  background-color: var(--COLOR-CARD-FOOTER);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+.moreOption {
+  font-size: 2rem;
+
+  position: absolute;
+  bottom: 25%;
+  right: 2px;
+}
+
+.moreOptionsContainer {
+  position: absolute;
+  top: 3rem;
+  right: 1rem;
+  z-index: var(--Z-INDEX-10);
+
+  width: 18rem;
+  padding: 1.5rem;
+  border-radius: 5px;
+
+  background-color: var(--COLOR-BACKGROUND);
+}
+
+.moreOptionsListItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.moreOptionsContainer li > span {
+  margin-left: 10px;
+}
+
+.card:hover {
+  transform: translateY(0);
+  transform: scale(1.03);
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    max-width: 28rem;
+  }
+}
