@@ -1,12 +1,17 @@
+.cardContainer {
+  max-width: 30rem;
+  position: relative;
+}
+
 .card {
   min-height: 29rem;
+  height: 29rem;
   background-color: var(--COLOR-CARD-BACKGROUND);
   border: 0;
   border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
-  position: relative;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .cardImage {
@@ -54,6 +59,7 @@
   padding: 0 5.5rem;
   color: var(--COLOR-CARD-FOOTER);
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .dotSeparator {
@@ -69,12 +75,13 @@
   position: absolute;
   bottom: 25%;
   right: 2px;
+  cursor: pointer;
 }
 
 .moreOptionsContainer {
   position: absolute;
-  top: 3rem;
-  right: 1rem;
+  bottom: -2rem;
+  right: 0.5rem;
   z-index: var(--Z-INDEX-10);
 
   width: 18rem;
@@ -89,6 +96,7 @@
   align-items: center;
   margin-bottom: 1rem;
   font-size: 1.4rem;
+  cursor: pointer;
 }
 
 .moreOptionsContainer li > span {

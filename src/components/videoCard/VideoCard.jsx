@@ -6,8 +6,10 @@ import {
   BiPlaylist,
 } from "assets/icons/Icons";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 function VideoCard({
+  _id,
   imgSrc,
   name,
   thumbnail,
@@ -20,6 +22,7 @@ function VideoCard({
 }) {
   const moreOptionsRef = useRef(null);
   const [showMoreOptions, setShowMoreOptions] = useState(false);
+
 
   const handleClickOutside = (event) => {
     if (
@@ -37,38 +40,34 @@ function VideoCard({
   }, []);
 
   return (
-    <div className={`card ${styles.card} `}>
-      <img
-        src={imgSrc}
-        alt={title}
-        loading="lazy"
-        className={`card-image ${styles.cardImage}`}
-      />
-      <div className={styles.length}>{length}</div>
-      <div className={styles.cardBody}>
+    <div className={styles.cardContainer}>
+      <Link to={`/video/${_id}`} className={`card ${styles.card} `}>
         <img
-          src={thumbnail}
+          src={imgSrc}
+          alt={title}
           loading="lazy"
-          alt={name}
-          className="avatar-m avatar-rounded"
+          className={`card-image ${styles.cardImage}`}
         />
-        <p className="fs-s">{title}</p>
-
-        {showMoreOptions && (
-          <div className={styles.moreOptionsContainer}>
-            <ul>
-              <li className={styles.moreOptionsListItem}>
-                <PhClock />
-                <span>Watch Later</span>
-              </li>
-              <li className={styles.moreOptionsListItem}>
-                <BiPlaylist />
-                <span>Add to Playlist</span>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
+        <div className={styles.length}>{length}</div>
+        <div className={styles.cardBody}>
+          <img
+            src={thumbnail}
+            loading="lazy"
+            alt={name}
+            className="avatar-m avatar-rounded"
+          />
+          <p className="fs-s">{title}</p>
+        </div>
+        <div className={styles.cardFooter}>
+          <p>{creator}</p>
+          {verified && <BiCheckCircleFill />}
+        </div>
+        <div className={styles.videoDetails}>
+          <p>{views} views</p>
+          <p className={styles.dotSeparator}></p>
+          <p>{uploaded}</p>
+        </div>
+      </Link>
       <span
         className={styles.moreOption}
         ref={moreOptionsRef}
@@ -76,15 +75,21 @@ function VideoCard({
       >
         <BiThreeDotsVertical />
       </span>
-      <div className={styles.cardFooter}>
-        <p>{creator}</p>
-        {verified && <BiCheckCircleFill />}
-      </div>
-      <div className={styles.videoDetails}>
-        <p>{views} views</p>
-        <p className={styles.dotSeparator}></p>
-        <p>{uploaded}</p>
-      </div>
+
+      {showMoreOptions && (
+        <div className={styles.moreOptionsContainer}>
+          <ul>
+            <li className={styles.moreOptionsListItem}>
+              <PhClock />
+              <span>Watch Later</span>
+            </li>
+            <li className={styles.moreOptionsListItem}>
+              <BiPlaylist />
+              <span>Add to Playlist</span>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,0 +1,81 @@
+.videoContainer {
+  padding: 4.5rem 4.5rem 3rem 4.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.video {
+  width: 100%;
+  height: 50rem;
+}
+
+.videoDetails {
+  padding-top: 2rem;
+}
+
+.videoDetails > * {
+  margin-bottom: 2rem;
+}
+
+.videoDescription {
+  font-family: "Work Sans", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  width: 70%
+}
+
+.videoTitle {
+  font-family: "Work Sans", sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 1.5px;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.creatorSection {
+  display: flex;
+  gap: 1rem;
+}
+
+.creatorSubSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.subs {
+  font-weight: 500;
+  color: var(--COLOR-CARD-FOOTER);
+  font-size: 1.2rem;
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  display: flex;
+
+  width: fit-content;
+  padding: 1rem;
+  background-color: var(--COLOR-BTN-BACKGROUND);
+  border-radius: 5px;
+}
+
+.btn > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: var(--COLOR-PRIMARY);
+  cursor: pointer;
+}
