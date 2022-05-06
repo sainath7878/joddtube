@@ -3,7 +3,6 @@ import { useFetch } from "hooks/useFetch";
 
 function Filters({ filters, setFilters }) {
   const { categories } = useFetch("/api/categories");
-  console.log(categories);
   return (
     <div className={styles.filters}>
       {categories &&
