@@ -1,0 +1,53 @@
+.form {
+  width: 100%;
+  max-width: 45rem;
+  margin: 3rem auto;
+  gap: 2rem;
+  border-color: var(--SECONDARY-COLOR);
+  color: var(--COLOR-PRIMARY);
+}
+
+.password-input {
+  width: 100%;
+}
+
+.visibility-icon {
+  position: relative;
+  top: -2.6rem;
+  left: 95%;
+  cursor: pointer;
+  color: var(--COLOR-BACKGROUND);
+}
+
+.form-input {
+  width: 100%;
+}
+
+.form > div {
+  margin-bottom: 0;
+  height: 50px;
+}
+
+.form > button {
+  width: 100%;
+  border-radius: 5px;
+  max-width: none;
+}
+
+.signIn {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-secondary-outline {
+  background-color: transparent;
+}
+
+.underline {
+  border-bottom: 1px solid var(--SECONDARY-COLOR);
+}
+
+.underline:hover {
+  color: var(--SECONDARY-COLOR);
+  border-bottom: 3px solid var(--SECONDARY-COLOR);
+}

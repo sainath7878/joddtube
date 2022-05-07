@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom"
-import { SidebarProvider } from "context/SidebarContext"
+import { SidebarProvider, AuthProvider } from "context/index"
 
 
 // Call make Server
@@ -14,9 +14,11 @@ makeServer();
 ReactDOM.render(
   < React.StrictMode >
     <BrowserRouter>
-      <SidebarProvider>
-        <App />
-      </SidebarProvider>
+      <AuthProvider>
+        <SidebarProvider>
+          <App />
+        </SidebarProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode >,
   document.getElementById('root')
