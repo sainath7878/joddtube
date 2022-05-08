@@ -6,11 +6,14 @@ import {
   BiPersonCircle,
   IcBaselineLogout,
 } from "assets/icons/Icons.jsx";
-import { useNavigate } from "react-router-dom";
 import { useSidebar } from "context/SidebarContext";
+import { useAuth } from "context/authContext";
 
 function Header() {
   const { setShowSidebar } = useSidebar();
+  const {
+    authState: { encodedToken }, logoutHandler
+  } = useAuth();
   return (
     <header className="header">
       <nav className="navigation d-flex">
@@ -30,9 +33,18 @@ function Header() {
         </div>
 
         <div className="nav-section login">
-          <Link to="/signin">
-            <BiPersonCircle className="fs-ml nav-link" />
-          </Link>
+          {encodedToken ? (
+            <Link to="/">
+              <IcBaselineLogout
+                onClick={logoutHandler}
+                className="fs-ml nav-link"
+              />
+            </Link>
+          ) : (
+            <Link to="/signin">
+              <BiPersonCircle className="fs-ml nav-link" />
+            </Link>
+          )}
         </div>
       </nav>
     </header>
