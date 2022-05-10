@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react"
-import { initialState, authReducer } from "reducer/AuthReducer";
+import { initialState, authReducer } from "reducer/authReducer";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";

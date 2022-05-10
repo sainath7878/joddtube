@@ -5,7 +5,6 @@
 
 .card {
   min-height: 29rem;
-  height: 30rem;
   background-color: var(--COLOR-CARD-BACKGROUND);
   border: 0;
   border-radius: 1rem;
@@ -21,12 +20,12 @@
 
 .length {
   position: absolute;
-  top: 52%;
+  top: 54%;
   right: 5px;
 
   background-color: var(--COLOR-BACKGROUND);
   padding: 3px;
-  opacity: 0.6;
+  opacity: 0.8;
   font-size: 1.1rem;
   border-radius: 5px;
 }
@@ -69,43 +68,23 @@
   border-radius: 50%;
 }
 
-.moreOption {
-  font-size: 2rem;
-
-  position: absolute;
-  bottom: 25%;
-  right: 2px;
-  cursor: pointer;
-}
-
-.moreOptionsContainer {
-  position: absolute;
-  bottom: -2rem;
-  right: 0.5rem;
-  z-index: var(--Z-INDEX-10);
-
-  width: 20rem;
-  padding: 1.5rem;
-  border-radius: 5px;
-
-  background-color: var(--COLOR-BACKGROUND);
-}
-
-.moreOptionsListItem {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-
-.moreOptionsContainer li > span {
-  margin-left: 10px;
-}
-
 .card:hover {
   transform: translateY(0);
   transform: scale(1.03);
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+}
+
+.trashBtn {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 1rem;
+
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {

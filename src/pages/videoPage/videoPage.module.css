@@ -21,7 +21,7 @@
   font-family: "Work Sans", sans-serif;
   font-size: 2rem;
   letter-spacing: 1.5px;
-  width: 70%
+  width: 70%;
 }
 
 .videoTitle {
@@ -73,9 +73,17 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  
+
   font-size: 1.5rem;
   background-color: transparent;
   color: var(--COLOR-PRIMARY);
   cursor: pointer;
+}
+
+.liked {
+  color: var(--COLOR-LIKED);
+}
+
+.activeBtn:active {
+  transform: scale(1.05);
 }

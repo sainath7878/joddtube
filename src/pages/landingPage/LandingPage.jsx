@@ -4,6 +4,7 @@ import { useScrollToTop, useFetch } from "hooks/index";
 import { RotatingLines } from "react-loader-spinner";
 import { useState } from "react";
 import { getFilteredData } from "utils/filteredData";
+import { useAuth } from "context/authContext";
 
 function LandingPage() {
   useScrollToTop();
@@ -12,6 +13,9 @@ function LandingPage() {
   const [filters, setFilters] = useState("All");
 
   const filteredData = getFilteredData(videos, filters);
+  const {
+    authState: { loading },
+  } = useAuth();
 
   return (
     <>
@@ -19,7 +23,12 @@ function LandingPage() {
         <Filters filters={filters} setFilters={setFilters} />
       </div>
       <div className={styles.allVideos}>
-        {filteredData ? (
+        {loading ? (
+          <div className="loader">
+            <RotatingLines width="100" strokeColor="#a40ae0" />
+          </div>
+        ) : (
+          filteredData &&
           filteredData.map(
             ({
               _id,
@@ -48,10 +57,6 @@ function LandingPage() {
               />
             )
           )
-        ) : (
-          <div className="loader">
-            <RotatingLines width="100" strokeColor="#a40ae0" />
-          </div>
         )}
       </div>
     </>
