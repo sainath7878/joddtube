@@ -1,0 +1,105 @@
+.cardContainer {
+  max-width: 30rem;
+  position: relative;
+}
+
+.card {
+  min-height: 29rem;
+  height: 30rem;
+  background-color: var(--COLOR-CARD-BACKGROUND);
+  border: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.cardImage {
+  height: 18rem;
+  object-position: top center;
+}
+
+.length {
+  position: absolute;
+  top: 54%;
+  right: 5px;
+
+  background-color: var(--COLOR-BACKGROUND);
+  padding: 3px;
+  opacity: 0.8;
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+
+.cardBody {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 0 0.5rem;
+  position: relative;
+  width: 95%;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  padding: 0 5.5rem;
+  color: var(--COLOR-CARD-FOOTER);
+  font-size: 1.2rem;
+}
+
+.videoDetails {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 0 5.5rem;
+  color: var(--COLOR-CARD-FOOTER);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.dotSeparator {
+  background-color: var(--COLOR-CARD-FOOTER);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+.card:hover {
+  transform: translateY(0);
+  transform: scale(1.03);
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+}
+
+.trashBtn {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 1rem;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    max-width: 28rem;
+  }
+
+  .trashBtn {
+    bottom: 12%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .trashBtn {
+    bottom: 18%;
+  }
+}
