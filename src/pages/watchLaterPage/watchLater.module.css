@@ -1,20 +1,12 @@
-.filterContainer {
-  padding: 4.5rem;
-}
-
-.allVideos {
+.watchLaterVideosContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(31rem, 1fr));
   row-gap: 3rem;
-  padding: 0 4.5rem 3rem 4.5rem;
+  padding: 4.5rem 4.5rem 3rem 4.5rem;
 }
 
 @media only screen and (max-width: 768px) {
-  .filterContainer {
-    padding: 2rem;
-  }
-
-  .allVideos {
+  .watchLaterVideosContainer {
     place-items: center;
   }
 }

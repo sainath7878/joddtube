@@ -1,12 +1,130 @@
+import axios from "axios";
 import { createContext, useContext, useReducer } from "react"
+import { toast } from "react-toastify";
+import { initialVideoState, videoReducer } from "reducer/videoReducer";
+import { useAuth } from "./authContext";
 
 const VideoContext = createContext();
 
 function VideoProvider({ children }) {
-    const [videoState, videoDispatch] = useReducer();
-    <VideoContext.Provider value={{ videoState, videoDispatch }}>
-        {children}
-    </VideoContext.Provider>
+
+    const [videoState, videoDispatch] = useReducer(videoReducer, initialVideoState);
+
+    const { authState: { encodedToken } } = useAuth();
+
+
+    const likeHandler = async (video) => {
+        try {
+            const response = await axios.post(
+                "/api/user/likes",
+                { video },
+                {
+                    headers: {
+                        authorization: encodedToken,
+                    },
+                }
+            );
+            if (response.status === 201) {
+                videoDispatch({
+                    type: "SET_LIKED_VIDEOS",
+                    payload: { likedVideos: response.data.likes },
+                });
+                toast.success("Added to Liked Videos");
+            }
+        } catch (err) {
+            console.log(err);
+            toast.error(err.response.data.errors[0])
+        }
+    };
+
+    const unLikeHandler = async (video) => {
+        try {
+            const response = await axios.delete(`/api/user/likes/${video._id}`, {
+                headers: {
+                    authorization: encodedToken,
+                },
+            });
+            if (response.status === 200) {
+                videoDispatch({
+                    type: "SET_LIKED_VIDEOS",
+                    payload: { likedVideos: response.data.likes },
+                });
+                toast.error("Removed from Liked Videos");
+            }
+        } catch (err) {
+            console.log(err);
+            toast.error(err.response.data.errors[0])
+        }
+    };
+
+    const addToWatchLaterHandler = async (video) => {
+        console.log(video)
+        if (encodedToken) {
+            try {
+                const response = await axios.post("/api/user/watchlater",
+                    { video: video },
+                    {
+                        headers: {
+                            authorization: encodedToken
+                        }
+                    }
+                )
+                if (response.status === 201) {
+                    const response2 = await axios.get("/api/user/watchlater",
+                        {
+                            headers: {
+                                authorization: encodedToken
+                            }
+                        }
+                    )
+                    console.log(response2.data);
+                    videoDispatch({
+                        type: "SET_WATCHLATER_VIDEOS",
+                        payload: { watchLaterVideos: response.data.watchlater },
+                    });
+                    toast.success("Added to Watch Later")
+                }
+            }
+            catch (err) {
+                console.log(err);
+                toast.error(err.response.data.errors[0]);
+            }
+        }
+        else {
+            toast.info("Please Login")
+        }
+
+    }
+
+    const removeFromWatchlaterHandler = async (video) => {
+        try {
+            const response = await axios.delete(`/api/user/watchlater/${video._id}`,
+                {
+                    headers: {
+                        authorization: encodedToken
+                    }
+                }
+            )
+            if (response.status === 200) {
+                videoDispatch({
+                    type: "SET_WATCHLATER_VIDEOS",
+                    payload: { watchLaterVideos: response.data.watchlater },
+                });
+                toast.error("Removed from Watch Later")
+            }
+        }
+        catch (err) {
+            console.log(err)
+            toast.error(err.response.data.errors[0])
+        }
+    }
+
+
+    return (
+        <VideoContext.Provider value={{ videoState, videoDispatch, likeHandler, unLikeHandler, addToWatchLaterHandler, removeFromWatchlaterHandler }}>
+            {children}
+        </VideoContext.Provider>
+    )
 }
 
 const useVideos = () => useContext(VideoContext)
