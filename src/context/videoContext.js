@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useReducer } from "react"
 import { toast } from "react-toastify";
 import { initialVideoState, videoReducer } from "reducer/videoReducer";
+import { useAuth } from "./authContext";
 
 const VideoContext = createContext();
 
@@ -9,13 +10,14 @@ function VideoProvider({ children }) {
 
     const [videoState, videoDispatch] = useReducer(videoReducer, initialVideoState);
 
-    const encodedToken = localStorage.getItem("token");
+    const { authState: { encodedToken } } = useAuth();
+
 
     const likeHandler = async (video) => {
         try {
             const response = await axios.post(
                 "/api/user/likes",
-                { video: video },
+                { video },
                 {
                     headers: {
                         authorization: encodedToken,
@@ -56,27 +58,42 @@ function VideoProvider({ children }) {
     };
 
     const addToWatchLaterHandler = async (video) => {
-        try {
-            const response = await axios.post("/api/user/watchlater",
-                { video },
-                {
-                    headers: {
-                        authorization: encodedToken
+        console.log(video)
+        if (encodedToken) {
+            try {
+                const response = await axios.post("/api/user/watchlater",
+                    { video: video },
+                    {
+                        headers: {
+                            authorization: encodedToken
+                        }
                     }
+                )
+                if (response.status === 201) {
+                    const response2 = await axios.get("/api/user/watchlater",
+                        {
+                            headers: {
+                                authorization: encodedToken
+                            }
+                        }
+                    )
+                    console.log(response2.data);
+                    videoDispatch({
+                        type: "SET_WATCHLATER_VIDEOS",
+                        payload: { watchLaterVideos: response.data.watchlater },
+                    });
+                    toast.success("Added to Watch Later")
                 }
-            )
-            if (response.status === 201) {
-                videoDispatch({
-                    type: "SET_WATCHLATER_VIDEOS",
-                    payload: { watchLaterVideos: response.data.watchlater },
-                });
-                toast.success("Added to Watch Later")
+            }
+            catch (err) {
+                console.log(err);
+                toast.error(err.response.data.errors[0]);
             }
         }
-        catch (err) {
-            console.log(err);
-            toast.error(err.response.data.errors[0]);
+        else {
+            toast.info("Please Login")
         }
+
     }
 
     const removeFromWatchlaterHandler = async (video) => {

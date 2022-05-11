@@ -96,7 +96,7 @@ function VideoPage() {
                         className={styles.activeBtn}
                       >
                         <BiClockFill />
-                        Remove from Watch Later
+                        Remove from Later
                       </button>
                     ) : (
                       <button

@@ -87,3 +87,15 @@
 .activeBtn:active {
   transform: scale(1.05);
 }
+
+@media only screen and (max-width: 768px) {
+  .videoDescription {
+    width: 100%;
+  }
+
+  .section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+}

@@ -5,6 +5,7 @@
 
 .card {
   min-height: 29rem;
+  height: 30rem;
   background-color: var(--COLOR-CARD-BACKGROUND);
   border: 0;
   border-radius: 1rem;
@@ -90,5 +91,15 @@
 @media only screen and (max-width: 768px) {
   .card {
     max-width: 28rem;
+  }
+
+  .trashBtn {
+    bottom: 12%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .trashBtn {
+    bottom: 18%;
   }
 }
