@@ -58,7 +58,6 @@ function VideoProvider({ children }) {
     };
 
     const addToWatchLaterHandler = async (video) => {
-        console.log(video)
         if (encodedToken) {
             try {
                 const response = await axios.post("/api/user/watchlater",
@@ -70,14 +69,6 @@ function VideoProvider({ children }) {
                     }
                 )
                 if (response.status === 201) {
-                    const response2 = await axios.get("/api/user/watchlater",
-                        {
-                            headers: {
-                                authorization: encodedToken
-                            }
-                        }
-                    )
-                    console.log(response2.data);
                     videoDispatch({
                         type: "SET_WATCHLATER_VIDEOS",
                         payload: { watchLaterVideos: response.data.watchlater },
@@ -119,9 +110,55 @@ function VideoProvider({ children }) {
         }
     }
 
+    const removeFromHistoryHandler = async (video) => {
+        try {
+            const response = await axios.delete(`/api/user/history/${video._id}`,
+                {
+                    headers: {
+                        authorization: encodedToken
+                    }
+                }
+            )
+            if (response.status === 200) {
+                videoDispatch({
+                    type: "SET_HISTORY_VIDEOS",
+                    payload: { historyVideos: response.data.history },
+                });
+                toast.error("Removed from History")
+            }
+        }
+        catch (err) {
+            console.log(err)
+            toast.error(err.response.data.errors[0])
+        }
+    }
+
+    const clearHistoryHandler = async () => {
+        try {
+            const response = await axios.delete("/api/user/history/all",
+                {
+                    headers: {
+                        authorization: encodedToken
+                    }
+                }
+            )
+            if (response.status === 200) {
+                videoDispatch({
+                    type: "SET_HISTORY_VIDEOS",
+                    payload: { historyVideos: response.data.history },
+                });
+                toast.error("History Cleared")
+            }
+        }
+        catch (err) {
+            console.log(err)
+            toast.error(err.response.data.errors[0])
+        }
+    }
+
 
     return (
-        <VideoContext.Provider value={{ videoState, videoDispatch, likeHandler, unLikeHandler, addToWatchLaterHandler, removeFromWatchlaterHandler }}>
+        <VideoContext.Provider value={{ videoState, videoDispatch, likeHandler, unLikeHandler, addToWatchLaterHandler, removeFromWatchlaterHandler, removeFromHistoryHandler, clearHistoryHandler }}>
             {children}
         </VideoContext.Provider>
     )

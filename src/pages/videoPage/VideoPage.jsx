@@ -9,21 +9,54 @@ import {
 } from "assets/icons/Icons";
 import { useVideos } from "context/videoContext";
 import { useAuth } from "context/authContext";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 function VideoPage() {
   const { videoId } = useParams();
   const { video } = useFetch(`/api/video/${videoId}`);
 
   const {
-    videoState: { likedVideos, watchLaterVideos },
+    videoState: { likedVideos, watchLaterVideos, historyVideos },
     likeHandler,
     unLikeHandler,
     addToWatchLaterHandler,
     removeFromWatchlaterHandler,
+    videoDispatch,
   } = useVideos();
   const {
-    authState: { loading },
+    authState: { loading, encodedToken },
   } = useAuth();
+
+  useEffect(() => {
+    if (!historyVideos.some((item) => item._id === videoId) && video) {
+      (async () => {
+        try {
+          const response = await axios.post(
+            "/api/user/history",
+            {
+              video: video,
+            },
+            {
+              headers: {
+                authorization: encodedToken,
+              },
+            }
+          );
+          if (response.status === 201) {
+            videoDispatch({
+              type: "SET_HISTORY_VIDEOS",
+              payload: { historyVideos: response.data.history },
+            });
+          }
+        } catch (err) {
+          console.log(err);
+          toast.error(err.response.data.errors[0]);
+        }
+      })();
+    }
+  }, [video]);
 
   return (
     <>
