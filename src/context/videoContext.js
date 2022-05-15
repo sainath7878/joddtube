@@ -61,7 +61,7 @@ function VideoProvider({ children }) {
         if (encodedToken) {
             try {
                 const response = await axios.post("/api/user/watchlater",
-                    { video: video },
+                    { video },
                     {
                         headers: {
                             authorization: encodedToken

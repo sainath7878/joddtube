@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom"
-import { SidebarProvider, AuthProvider, VideoProvider } from "context"
+import { SidebarProvider, AuthProvider, VideoProvider, PlayListProvider } from "context"
 
 
 // Call make Server
@@ -17,7 +17,9 @@ ReactDOM.render(
       <AuthProvider>
         <SidebarProvider>
           <VideoProvider>
-            <App />
+            <PlayListProvider>
+              <App />
+            </PlayListProvider>
           </VideoProvider>
         </SidebarProvider>
       </AuthProvider>

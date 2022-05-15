@@ -2,3 +2,15 @@
   height: 40rem;
   width: 40rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .emptyCardImage {
+    width: 30rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .emptyCardImage {
+    width: 35rem;
+  }
+}

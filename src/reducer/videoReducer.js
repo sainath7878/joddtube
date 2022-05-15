@@ -2,7 +2,6 @@ const initialVideoState = {
     likedVideos: [],
     watchLaterVideos: [],
     historyVideos: [],
-    playlist: []
 }
 
 const videoReducer = (videoState, { type, payload }) => {
