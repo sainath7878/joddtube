@@ -8,6 +8,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useVideos } from "context/videoContext";
+import { usePlayList } from "context/playListContext";
 
 function VideoCard(video) {
   const {
@@ -45,6 +46,8 @@ function VideoCard(video) {
     removeFromWatchlaterHandler,
     videoState: { watchLaterVideos },
   } = useVideos();
+
+  const { addVideoToPlaylistHandler, setShowPlayListModal } = usePlayList();
 
   return (
     <div className={styles.cardContainer}>
@@ -107,7 +110,16 @@ function VideoCard(video) {
                 <span>Watch Later</span>
               </li>
             )}
-            <li className={styles.moreOptionsListItem}>
+            <li
+              className={styles.moreOptionsListItem}
+              onClick={() =>
+                setShowPlayListModal((prev) => ({
+                  ...prev,
+                  state: true,
+                  video,
+                }))
+              }
+            >
               <BiPlaylist />
               <span>Add to Playlist</span>
             </li>

@@ -6,13 +6,23 @@
 }
 
 .clearHistoryBtnContainer {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 4rem;
+  position: absolute;
+  top: 4.5rem;
+  right: 2rem;
 }
 
 @media only screen and (max-width: 768px) {
   .historyVideosContainer {
     place-items: center;
+  }
+
+  .clearHistoryBtnContainer {
+    position: sticky;
+    top: 10rem;
+    display: flex;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    margin-right: 2rem;
+    z-index: var(--Z-INDEX-10);
   }
 }

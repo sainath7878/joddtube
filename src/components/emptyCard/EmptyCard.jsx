@@ -23,15 +23,21 @@ function EmptyCard() {
 
   return (
     <>
-      <h1 className="fs-ml">{text}</h1>
+      {location.pathname.match("/playlist/") ? (
+        <h1 className="fs-ml">No Videos in Playlist</h1>
+      ) : (
+        <h1 className="fs-ml">{text}</h1>
+      )}
       <img
         src="https://res.cloudinary.com/duy47nrum/image/upload/v1652174657/joddtube/undraw_video_streaming_re_v3qg_bzbtu6.svg"
         alt="empty video"
         className={styles.emptyCardImage}
       />
-      <Link to="/">
-        <button className="btn btn-secondary">Browse Videos</button>
-      </Link>
+      {location.pathname !== "/playlist" && (
+        <Link to="/">
+          <button className="btn btn-secondary">Browse Videos</button>
+        </Link>
+      )}
     </>
   );
 }

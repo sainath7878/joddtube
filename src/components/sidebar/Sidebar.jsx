@@ -25,7 +25,8 @@ function Sidebar() {
         showSidebar ? "sidebar-responsive-show" : "sidebar-responsive-hide"
       }`}
     >
-      <ul className="sidebar-list">
+      <ul className="sidebar-list
+      ">
         {navbarData.map((data, index) => {
           return (
             <li key={index}>

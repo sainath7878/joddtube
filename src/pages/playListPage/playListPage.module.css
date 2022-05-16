@@ -1,0 +1,35 @@
+.playListContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 3rem;
+  padding: 4.5rem 4.5rem 3rem 4.5rem;
+}
+
+.createPlayListBtn {
+  position: absolute;
+  top: 4.5rem;
+  right: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .createPlayListBtn {
+    position: sticky;
+    top: 10rem;
+    display: flex;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    margin-right: 2rem;
+    z-index: var(--Z-INDEX-10);
+  }
+
+  .playListContainer{
+  grid-template-columns: 25rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .playListContainer {
+    place-items: center;
+    grid-template-columns: 1fr;
+  }
+}

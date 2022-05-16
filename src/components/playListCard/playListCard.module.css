@@ -1,0 +1,52 @@
+.playlistContainer {
+  background-color: var(--COLOR-CARD-BACKGROUND);
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 28rem;
+  max-height: 30rem;
+}
+
+.playListImage {
+  width: 100%;
+  height: 20rem;
+  margin-bottom: 1rem;
+}
+
+.trashBtn {
+  color: var(--COLOR-PRIMARY);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.playListLengthContainer {
+  position: relative;
+}
+
+.playListLength {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  opacity: 0.7;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  width: 100%;
+  background-color: var(--COLOR-CARD-BACKGROUND);
+  color: var(--COLOR-PRIMARY);
+}
+
+.playListDescription {
+  padding: 0 1rem;
+}
+
+.playListTitle {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 5px;
+}

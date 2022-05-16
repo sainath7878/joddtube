@@ -2,16 +2,18 @@ import './App.css';
 import { useEffect } from "react"
 import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
-import { Header, Sidebar, SignIn, SignUp } from "components/index"
-import { NotFound, LandingPage, HistoryPage, WatchLaterPage, LikedPage, PlayListPage, VideoPage, AuthorizationPage, RestrictAuth } from "pages/index"
+import { Header, Sidebar, SignIn, SignUp, PlayListModal } from "components/index"
+import { NotFound, LandingPage, HistoryPage, WatchLaterPage, LikedPage, PlayListPage, VideoPage, AuthorizationPage, RestrictAuth, IndividualPlayListPage } from "pages"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from 'context/authContext';
+import { usePlayList } from 'context/playListContext';
 
 
 function App() {
   const token = localStorage.getItem("token")
   const { authDispatch } = useAuth();
+  const { showPlayListModal } = usePlayList();
   useEffect(() => {
     if (token) {
       authDispatch({ type: "SET_USER", payload: { encodedToken: token } })
@@ -23,6 +25,7 @@ function App() {
       <div className="main-container">
         <Sidebar />
         <ToastContainer theme="colored" autoClose={2000} position="top-right" className="fs-s" />
+        {showPlayListModal.state && <PlayListModal />}
         <div className="content">
           <Routes>
             <Route path="/mockman" element={<Mockman />} />
@@ -33,6 +36,7 @@ function App() {
               <Route path="/watchlater" element={<WatchLaterPage />} />
               <Route path="/liked" element={<LikedPage />} />
               <Route path="/playlist" element={<PlayListPage />} />
+              <Route path="/playlist/:playlistid" element={<IndividualPlayListPage />} />
             </Route>
 
             <Route element={<RestrictAuth />}>

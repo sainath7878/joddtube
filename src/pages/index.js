@@ -7,4 +7,5 @@ export { PlayListPage } from "pages/playListPage/PlayListPage"
 export { VideoPage } from "pages/videoPage/VideoPage"
 export { AuthorizationPage } from "pages/authorizationPage/AuthorizationPage"
 export { RestrictAuth } from "pages/restrictAuth/RestrictAuth"
+export { IndividualPlayListPage } from "pages/individualPlayListPage/IndividualPlayListPage"
 

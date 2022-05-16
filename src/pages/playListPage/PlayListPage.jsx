@@ -1,5 +1,80 @@
+import { EmptyCard, HistoryCard, PlayListCard } from "components";
+import { useAuth } from "context/authContext";
+import { usePlayList } from "context/playListContext";
+import { useFetch } from "hooks/useFetch";
+import { useEffect } from "react";
+import { RotatingLines } from "react-loader-spinner";
+import styles from "./playListPage.module.css";
+
 function PlayListPage() {
-  return <h1>PlayList Page</h1>;
+  const {
+    authState: { loading, encodedToken },
+  } = useAuth();
+
+  const {
+    playListState: { playlists },
+    playListDispatch,
+    setShowPlayListModal,
+  } = usePlayList();
+
+  //Fetching the playlists from db
+  const { playlists: playlist } = useFetch("/api/user/playlists", {
+    headers: {
+      authorization: encodedToken,
+    },
+  });
+
+  //setting the playlists in state variable
+  useEffect(() => {
+    playListDispatch({ type: "SET_PLAYLISTS", payload: { playlist } });
+  }, [playlist]);
+
+  return (
+    <>
+      {loading ? (
+        <div className="loader">
+          <RotatingLines width="100" strokeColor="#a40ae0" />
+        </div>
+      ) : playlists.length > 0 ? (
+        <>
+          <div className="videos-length">
+            <h1>PlayList ({playlists.length})</h1>
+          </div>
+          <div className={styles.createPlayListBtn}>
+            <button
+              className="btn btn-secondary"
+              onClick={() =>
+                setShowPlayListModal((prev) => ({ ...prev, state: true }))
+              }
+            >
+              Create Playlist
+            </button>
+          </div>
+          <div className={styles.playListContainer}>
+            {playlists.map((playlist) => {
+              return <PlayListCard playlist={playlist} key={playlist._id} />;
+            })}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.createPlayListBtn}>
+            <button
+              className="btn btn-secondary"
+              onClick={() =>
+                setShowPlayListModal((prev) => ({ ...prev, state: true }))
+              }
+            >
+              Create Playlist
+            </button>
+          </div>
+          <div className="emptyCard-container">
+            <EmptyCard />
+          </div>
+        </>
+      )}
+    </>
+  );
 }
 
 export { PlayListPage };
