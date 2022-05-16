@@ -6,8 +6,7 @@ import {
   BiPersonCircle,
   IcBaselineLogout,
 } from "assets/icons/Icons.jsx";
-import { useSidebar } from "context/SidebarContext";
-import { useAuth } from "context/authContext";
+import { useAuth, useSidebar } from "context";
 
 function Header() {
   const { setShowSidebar } = useSidebar();

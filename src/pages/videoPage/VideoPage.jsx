@@ -1,14 +1,13 @@
 import { useParams } from "react-router-dom";
 import styles from "./videoPage.module.css";
-import { useFetch } from "hooks/useFetch";
+import { useFetch } from "hooks";
 import { RotatingLines } from "react-loader-spinner";
 import {
   BiHeartFill,
   BiClockFill,
   BiArrowDownSquareFill,
 } from "assets/icons/Icons";
-import { useVideos } from "context/videoContext";
-import { useAuth } from "context/authContext";
+import { useVideos, useAuth, usePlayList } from "context";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -16,6 +15,8 @@ import axios from "axios";
 function VideoPage() {
   const { videoId } = useParams();
   const { video } = useFetch(`/api/video/${videoId}`);
+
+  const { setShowPlayListModal } = usePlayList();
 
   const {
     videoState: { likedVideos, watchLaterVideos, historyVideos },
@@ -116,7 +117,16 @@ function VideoPage() {
                   </div>
 
                   <div className={styles.btn}>
-                    <button className={styles.activeBtn}>
+                    <button
+                      className={styles.activeBtn}
+                      onClick={() =>
+                        setShowPlayListModal((prev) => ({
+                          ...prev,
+                          state: true,
+                          video,
+                        }))
+                      }
+                    >
                       <BiArrowDownSquareFill />
                       Save
                     </button>

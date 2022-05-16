@@ -1,8 +1,7 @@
 import { EmptyCard, IndividualPlayListVideoCard } from "components";
-import { useAuth } from "context/authContext";
-import { usePlayList } from "context/playListContext";
-import { useFetch } from "hooks/useFetch";
-import { useEffect, useState } from "react";
+import { useAuth, usePlayList } from "context";
+import { useFetch, useDocumentTitle } from "hooks";
+import { useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import styles from "./individualPlayListPage.module.css";
@@ -24,6 +23,8 @@ function IndividualPlayListPage() {
       authorization: encodedToken,
     },
   });
+
+  useDocumentTitle("PlayList")
 
   useEffect(() => {
     playlist &&

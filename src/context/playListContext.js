@@ -23,25 +23,31 @@ function PlayListProvider({ children }) {
     const { authState: { encodedToken } } = useAuth();
 
     const createPlayListHandler = async ({ title, description }, video = {}) => {
-        try {
-            const response = await axios.post("/api/user/playlists",
-                { playlist: { title, description } },
-                {
-                    headers: {
-                        authorization: encodedToken
+        if (encodedToken) {
+            try {
+                const response = await axios.post("/api/user/playlists",
+                    { playlist: { title, description } },
+                    {
+                        headers: {
+                            authorization: encodedToken
+                        }
+                    }
+                )
+                if (response.status === 201) {
+                    playListDispatch({ type: "SET_PLAYLISTS", payload: { playlist: response.data.playlists } })
+                    if (Object.keys(video).length > 0) {
+                        addVideoToPlaylistHandler(video, response.data.playlists[response.data.playlists.length - 1]._id);
                     }
                 }
-            )
-            if (response.status === 201) {
-                playListDispatch({ type: "SET_PLAYLISTS", payload: { playlist: response.data.playlists } })
-                if (Object.keys(video).length > 0) {
-                    addVideoToPlaylistHandler(video, response.data.playlists[response.data.playlists.length - 1]._id);
-                }
+            }
+            catch (err) {
+                console.log(err)
             }
         }
-        catch (err) {
-            console.log(err)
+        else {
+            toast.info("Please Login")
         }
+
     }
 
     const deletePlayListHandler = async ({ _id }) => {
@@ -62,42 +68,54 @@ function PlayListProvider({ children }) {
     }
 
     const addVideoToPlaylistHandler = async (video, playListId) => {
-        try {
-            const response = await axios.post(`/api/user/playlists/${playListId}`,
-                { video },
-                {
-                    headers: {
-                        authorization: encodedToken
-                    },
+        if (encodedToken) {
+            try {
+                const response = await axios.post(`/api/user/playlists/${playListId}`,
+                    { video },
+                    {
+                        headers: {
+                            authorization: encodedToken
+                        },
+                    }
+                )
+                if (response.status === 201) {
+                    playListDispatch({ type: "MANAGE_PLAYLISTS", payload: { playlist: response.data.playlist } })
+                    toast.success(`Added video to ${response.data.playlist.title}`)
                 }
-            )
-            if (response.status === 201) {
-                playListDispatch({ type: "MANAGE_PLAYLISTS", payload: { playlist: response.data.playlist } })
-                toast.success(`Added video to ${response.data.playlist.title}`)
+            }
+            catch (err) {
+                console.log(err.response.data.errors[0])
             }
         }
-        catch (err) {
-            console.log(err.response.data.errors[0])
+        else {
+            toast.info("Please Login");
         }
+
     }
 
     const deleteVideoFromPlayListHandler = async (videoId, playlistId) => {
-        try {
-            const response = await axios.delete(`/api/user/playlists/${playlistId}/${videoId}`,
-                {
-                    headers: {
-                        authorization: encodedToken
+        if (encodedToken) {
+            try {
+                const response = await axios.delete(`/api/user/playlists/${playlistId}/${videoId}`,
+                    {
+                        headers: {
+                            authorization: encodedToken
+                        }
                     }
+                )
+                if (response.status === 200) {
+                    playListDispatch({ type: "MANAGE_PLAYLISTS", payload: { playlist: response.data.playlist } })
+                    toast.error("Video deleted")
                 }
-            )
-            if (response.status === 200) {
-                playListDispatch({ type: "MANAGE_PLAYLISTS", payload: { playlist: response.data.playlist } })
-                toast.error("Video deleted")
+            }
+            catch (err) {
+                console.log(err.response.data.errors[0])
             }
         }
-        catch (err) {
-            console.log(err.response.data.errors[0])
+        else {
+            toast.info("Please Login");
         }
+
     }
 
     return (

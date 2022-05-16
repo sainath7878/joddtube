@@ -1,5 +1,5 @@
 import { BiXLg } from "assets/icons/Icons";
-import { usePlayList } from "context/playListContext";
+import { useAuth, usePlayList } from "context";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
@@ -54,34 +54,40 @@ function PlayListModal() {
     }
   };
 
+  const {
+    authState: { encodedToken },
+  } = useAuth();
+
   return (
     <div className={styles.playListModalContainer}>
       <form ref={modalRef} className={styles.playListForm}>
         <h1 className="fs-m">Add to Playlist</h1>
-        {location.pathname !== "/playlist" && playlists.length > 0 && (
-          <ul>
-            {playlists.map((item) => {
-              return (
-                <div className={styles.playlistItem} key={item._id}>
-                  <input
-                    type="checkbox"
-                    id={item.title}
-                    value={item.title}
-                    checked={playlists
-                      .find((playlist) => playlist._id === item._id)
-                      .videos.some(({ _id }) => _id === video._id)}
-                    onChange={() =>
-                      manageVideoInPlayListHandler(item._id, video._id)
-                    }
-                  />
-                  <li className="fs-s">
-                    <label htmlFor={item.title}>{item.title}</label>
-                  </li>
-                </div>
-              );
-            })}
-          </ul>
-        )}
+        {encodedToken &&
+          location.pathname !== "/playlist" &&
+          playlists.length > 0 && (
+            <ul>
+              {playlists.map((item) => {
+                return (
+                  <div className={styles.playlistItem} key={item._id}>
+                    <input
+                      type="checkbox"
+                      id={item.title}
+                      value={item.title}
+                      checked={playlists
+                        .find((playlist) => playlist._id === item._id)
+                        .videos.some(({ _id }) => _id === video._id)}
+                      onChange={() =>
+                        manageVideoInPlayListHandler(item._id, video._id)
+                      }
+                    />
+                    <li className="fs-s">
+                      <label htmlFor={item.title}>{item.title}</label>
+                    </li>
+                  </div>
+                );
+              })}
+            </ul>
+          )}
 
         <input
           type="text"

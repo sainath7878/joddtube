@@ -1,7 +1,8 @@
 import { BiCheckCircleFill } from "assets/icons/Icons";
-import { usePlayList } from "context/playListContext";
+import { usePlayList } from "context";
 import { FaTrash } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
+import { trimTitle } from "utils";
 import styles from "./individualPlayListVideoCard.module.css";
 
 function IndividualPlayListVideoCard({ video }) {
@@ -21,6 +22,8 @@ function IndividualPlayListVideoCard({ video }) {
   const { playlistid } = useParams();
   const { deleteVideoFromPlayListHandler } = usePlayList();
 
+  const trimmedTitle = trimTitle(title);
+
   return (
     <div className={styles.cardContainer}>
       <Link to={`/video/${_id}`} className={`card ${styles.card} `}>
@@ -38,7 +41,7 @@ function IndividualPlayListVideoCard({ video }) {
             alt={name}
             className="avatar-m avatar-rounded"
           />
-          <p className="fs-s">{title}</p>
+          <p className="fs-s">{trimmedTitle}</p>
         </div>
         <div className={styles.cardFooter}>
           <p>{creator}</p>

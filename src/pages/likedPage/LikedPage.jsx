@@ -1,9 +1,9 @@
 import { useVideos } from "context/videoContext";
-import { useFetch } from "hooks";
+import { useDocumentTitle, useFetch } from "hooks";
 import { useEffect } from "react";
 import styles from "./likedPage.module.css";
 import { EmptyCard, LikedCard } from "components";
-import { useAuth } from "context/authContext";
+import { useAuth } from "context";
 import { RotatingLines } from "react-loader-spinner";
 
 function LikedPage() {
@@ -15,6 +15,8 @@ function LikedPage() {
   const {
     authState: { loading },
   } = useAuth();
+
+  useDocumentTitle("Likes")
 
   const encodedToken = localStorage.getItem("token");
 

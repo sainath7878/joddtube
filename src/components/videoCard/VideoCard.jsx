@@ -7,8 +7,8 @@ import {
 } from "assets/icons/Icons";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useVideos } from "context/videoContext";
-import { usePlayList } from "context/playListContext";
+import { useVideos, usePlayList } from "context";
+import { trimTitle } from "utils";
 
 function VideoCard(video) {
   const {
@@ -25,6 +25,8 @@ function VideoCard(video) {
   } = video;
   const moreOptionsRef = useRef(null);
   const [showMoreOptions, setShowMoreOptions] = useState(false);
+
+  const trimmedTitle = trimTitle(title);
 
   const handleClickOutside = (event) => {
     if (
@@ -47,7 +49,7 @@ function VideoCard(video) {
     videoState: { watchLaterVideos },
   } = useVideos();
 
-  const { addVideoToPlaylistHandler, setShowPlayListModal } = usePlayList();
+  const { setShowPlayListModal } = usePlayList();
 
   return (
     <div className={styles.cardContainer}>
@@ -70,7 +72,7 @@ function VideoCard(video) {
             alt={name}
             className="avatar-m avatar-rounded"
           />
-          <p className="fs-s">{title}</p>
+          <p className="fs-s">{trimmedTitle}</p>
         </div>
         <div className={styles.cardFooter}>
           <p>{creator}</p>

@@ -7,7 +7,7 @@ import {
   BiPlaylist,
 } from "assets/icons/Icons";
 import { NavLink } from "react-router-dom";
-import { useSidebar } from "context/SidebarContext";
+import { useSidebar } from "context";
 
 const navbarData = [
   { link: "/", icon: BiHouseDoor, text: "Home", class: "fs-s" },

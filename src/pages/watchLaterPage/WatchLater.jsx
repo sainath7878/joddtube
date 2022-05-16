@@ -1,7 +1,6 @@
 import { EmptyCard, WatchLaterCard } from "components";
-import { useAuth } from "context/authContext";
-import { useVideos } from "context/videoContext";
-import { useFetch } from "hooks/useFetch";
+import { useAuth, useVideos } from "context";
+import { useDocumentTitle, useFetch } from "hooks";
 import { useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import styles from "./watchLater.module.css";
@@ -23,6 +22,8 @@ function WatchLaterPage() {
       authorization: encodedToken,
     },
   });
+
+  useDocumentTitle("Watch Later");
 
   useEffect(() => {
     videoDispatch({
