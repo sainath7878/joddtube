@@ -1,6 +1,6 @@
 import { EmptyCard, HistoryCard } from "components";
-import { useAuth } from "context/authContext";
-import { useVideos } from "context/videoContext";
+import { useAuth, useVideos } from "context";
+import { useDocumentTitle } from "hooks";
 import { useFetch } from "hooks/useFetch";
 import { useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
@@ -22,6 +22,8 @@ function HistoryPage() {
       authorization: encodedToken,
     },
   });
+
+  useDocumentTitle("History")
 
   useEffect(() => {
     videoDispatch({

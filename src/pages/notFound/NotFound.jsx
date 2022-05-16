@@ -1,8 +1,10 @@
 import { oops } from "assets/index";
 import "./notFound.css";
 import { Link } from "react-router-dom";
+import { useDocumentTitle } from "hooks";
 
 function NotFound() {
+  useDocumentTitle("Not Found");
   return (
     <div className="not-found-container">
       <img src={oops} alt="oops" />

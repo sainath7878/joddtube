@@ -1,5 +1,5 @@
 import { BiTrashFill } from "assets/icons/Icons";
-import { usePlayList } from "context/playListContext";
+import { usePlayList } from "context";
 import { Link } from "react-router-dom";
 import styles from "./playListCard.module.css";
 

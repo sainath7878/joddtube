@@ -2,7 +2,8 @@ import styles from "./likedCard.module.css";
 import { Link } from "react-router-dom";
 import { BiCheckCircleFill } from "assets/icons/Icons";
 import { FaTrash } from "react-icons/fa";
-import { useVideos } from "context/videoContext";
+import { useVideos } from "context";
+import { trimTitle } from "utils";
 
 function LikedCard(video) {
   const {
@@ -19,6 +20,8 @@ function LikedCard(video) {
   } = video;
 
   const { unLikeHandler } = useVideos();
+
+  const trimmedTitle = trimTitle(title);
 
   return (
     <div className={styles.cardContainer}>
@@ -37,7 +40,7 @@ function LikedCard(video) {
             alt={name}
             className="avatar-m avatar-rounded"
           />
-          <p className="fs-s">{title}</p>
+          <p className="fs-s">{trimmedTitle}</p>
         </div>
         <div className={styles.cardFooter}>
           <p>{creator}</p>

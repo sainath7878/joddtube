@@ -1,7 +1,6 @@
-import { EmptyCard, HistoryCard, PlayListCard } from "components";
-import { useAuth } from "context/authContext";
-import { usePlayList } from "context/playListContext";
-import { useFetch } from "hooks/useFetch";
+import { EmptyCard, PlayListCard } from "components";
+import { useAuth, usePlayList } from "context";
+import { useDocumentTitle, useFetch } from "hooks";
 import { useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import styles from "./playListPage.module.css";
@@ -28,6 +27,8 @@ function PlayListPage() {
   useEffect(() => {
     playListDispatch({ type: "SET_PLAYLISTS", payload: { playlist } });
   }, [playlist]);
+
+  useDocumentTitle("PlayList");
 
   return (
     <>

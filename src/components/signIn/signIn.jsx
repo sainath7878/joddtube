@@ -2,7 +2,8 @@ import "./signIn.css";
 import { BiDoorOpenFill, BiEyeFill, BiEyeSlashFill } from "assets/icons/Icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useAuth } from "context/authContext";
+import { useAuth } from "context";
+import { useDocumentTitle } from "hooks";
 
 function SignIn() {
   const [loginDetails, setLoginDetails] = useState({
@@ -12,6 +13,8 @@ function SignIn() {
   const [showPassword, setShowPassword] = useState(true);
 
   const { error, setError, signInHandler } = useAuth();
+
+  useDocumentTitle("SignIn");
 
   useEffect(() => {
     const timeOut = setTimeout(() => {

@@ -6,7 +6,8 @@ import {
 } from "../../assets/icons/Icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useAuth } from "context/authContext";
+import { useAuth } from "context";
+import { useDocumentTitle } from "hooks";
 
 function SignUp() {
   const [signUpDetails, setSignUpDetails] = useState({
@@ -23,6 +24,8 @@ function SignUp() {
   });
 
   const { error, setError, signUpHandler } = useAuth();
+
+  useDocumentTitle("SignUp");
 
   useEffect(() => {
     const timeOut = setTimeout(() => {

@@ -1,10 +1,10 @@
 import styles from "./landingPage.module.css";
 import { VideoCard, Filters } from "components/index";
-import { useScrollToTop, useFetch } from "hooks/index";
+import { useScrollToTop, useFetch, useDocumentTitle } from "hooks/index";
 import { RotatingLines } from "react-loader-spinner";
 import { useState } from "react";
-import { getFilteredData } from "utils/filteredData";
-import { useAuth } from "context/authContext";
+import { getFilteredData } from "utils";
+import { useAuth } from "context";
 
 function LandingPage() {
   useScrollToTop();
@@ -16,6 +16,8 @@ function LandingPage() {
   const {
     authState: { loading },
   } = useAuth();
+
+  useDocumentTitle("Home");
 
   return (
     <>
