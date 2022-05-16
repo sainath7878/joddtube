@@ -43,7 +43,6 @@ function PlayListModal() {
   }, []);
 
   const manageVideoInPlayListHandler = (playlistId, videoId) => {
-    console.log(playlistId, videoId);
     if (
       playlists
         .find((playlist) => playlist._id === playlistId)

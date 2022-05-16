@@ -40,7 +40,7 @@ function PlayListProvider({ children }) {
             }
         }
         catch (err) {
-            console.log(err.response.data.error[0])
+            console.log(err)
         }
     }
 
@@ -57,7 +57,7 @@ function PlayListProvider({ children }) {
             toast.info("Playlist deleted");
         }
         catch (err) {
-            console.log(err.response.data.error[0])
+            console.log(err.response.data.errors[0])
         }
     }
 
@@ -77,7 +77,7 @@ function PlayListProvider({ children }) {
             }
         }
         catch (err) {
-            console.log(err)
+            console.log(err.response.data.errors[0])
         }
     }
 
@@ -96,7 +96,7 @@ function PlayListProvider({ children }) {
             }
         }
         catch (err) {
-            console.log(err)
+            console.log(err.response.data.errors[0])
         }
     }
 

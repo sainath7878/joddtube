@@ -21,4 +21,15 @@
     margin-right: 2rem;
     z-index: var(--Z-INDEX-10);
   }
+
+  .playListContainer{
+  grid-template-columns: 25rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .playListContainer {
+    place-items: center;
+    grid-template-columns: 1fr;
+  }
 }

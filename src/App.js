@@ -2,13 +2,12 @@ import './App.css';
 import { useEffect } from "react"
 import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
-import { Header, Sidebar, SignIn, SignUp } from "components/index"
-import { NotFound, LandingPage, HistoryPage, WatchLaterPage, LikedPage, PlayListPage, VideoPage, AuthorizationPage, RestrictAuth, IndividualPlayListPage } from "pages/index"
+import { Header, Sidebar, SignIn, SignUp, PlayListModal } from "components/index"
+import { NotFound, LandingPage, HistoryPage, WatchLaterPage, LikedPage, PlayListPage, VideoPage, AuthorizationPage, RestrictAuth, IndividualPlayListPage } from "pages"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from 'context/authContext';
 import { usePlayList } from 'context/playListContext';
-import { PlayListModal } from 'components/playListModal/PlayListModal';
 
 
 function App() {
