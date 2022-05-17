@@ -69,7 +69,7 @@ function VideoCard(video) {
           <img
             src={thumbnail}
             loading="lazy"
-            alt={name}
+            alt={creator}
             className="avatar-m avatar-rounded"
           />
           <p className="fs-s">{trimmedTitle}</p>
