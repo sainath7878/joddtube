@@ -56,11 +56,11 @@ The website is built using following tech-stack:
 
 ### Installation
 
-Clone the repository on your local machine by typing the below commands on your terminal and cd to `joddkart`.
+Clone the repository on your local machine by typing the below commands on your terminal and cd to `joddtube`.
 
 ```
-git clone https://github.com/sainath7878/joddkeep.git
-cd joddkeep
+git clone https://github.com/sainath7878/joddtube.git
+cd joddtube
 ```
 
 Install the necessary dependencies.
