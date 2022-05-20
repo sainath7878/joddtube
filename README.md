@@ -1,71 +1,148 @@
+<div align="center">
 
-# Getting Started with Create React App
+# JODDTube
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</div>
 
-## Available Scripts
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-joddtube">About The Project</a>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#features">Features</a>
+      <ul>
+        <li><a href="#video-listing-page">Video Listing Page</a></li>
+        <li><a href="#single-video-page">Single Video Page</a></li>
+        <li><a href="#likes-page">Likes Page</a></li>
+        <li><a href="#watch-later-page">Watch Later Page</a></li>
+        <li><a href="#history-page">History Page</a></li>
+        <li><a href="#playlist-page">PlayList Page</a></li>
+        <li><a href="#individual-playlist-page">Individual Playlist Page</a></li>
+        <li><a href="#authentication">Authentication</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## About Joddtube
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+JODDTube is a video library application where you can like videos, add videos to watch later, create your playlist and has history to keep a track of your recently watched videos. JODDTube is publicly hosted on vercel at [https://joddtube.vercel.app/](https://joddtube.vercel.app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The website is built using following tech-stack:
 
-### `npm test`
+<ul>
+    <li>ReactJS</li>
+    <li>React Router v6</li>
+    <li>useContext + useReducer for state management</li>
+    <li>Jodd UI and Vanilla CSS</li>
+    <li>MockBee for mock Backend</li>
+</ul>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Clone the repository on your local machine by typing the below commands on your terminal and cd to `joddkart`.
 
-### `npm run eject`
+```
+git clone https://github.com/sainath7878/joddkeep.git
+cd joddkeep
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Install the necessary dependencies.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`joddtube` uses `mockbee's` mockbackend.
+Create an environment variable inside .env file in the root of the project with the below code.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+REACT_APP_JWT_SECRET = <JWT_SECRET_KEY_OF_YOUR_CHOICE>
+```
 
-## Learn More
+Now to run the app write the following command in your terminal:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`npm start`
+This should run the app on localhost:3000.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm start
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Features
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Video Listing Page
 
-### Making a Progressive Web App
+- This contains list of videos and filters to filter videos based on available categories
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Single Video Page
 
-### Advanced Configuration
+- User can watch video from this page.
+- Like the Video.
+- Unlike the video if it's already liked.
+- Add Video to Watch Later.
+- Remove from Watch Later if it's already added to Watch Later
+- Add the video to playlist.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Likes Page
 
-### Deployment
+- This page will contain all the liked videos by the user.
+- User can unlike videos from exisiting liked videos/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### History Page
 
-### `npm run build` fails to minify
+- This page will contain all the recently watched videos.
+- User can remove a video from history.
+- User can clear entire history.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Watch Later Page
+
+- This page will contain all the videos added to watch later by the user.
+- User can remove videos from exisiting watch later videos.
+
+### Playlist Page
+
+- This page will contain all the playlists created by the user.
+- User can delete the entire playlist.
+- User can navigate to a particular playlist to see the videos added to that particular playlist.
+
+### Individual Playlist Page
+
+- This page will contain all the videos added to the playlist user navigates from.
+- User can remove a video from the playlist.
+
+### Authentication
+
+- User can do a guest login
+- User can Log In/Log Out with existing credentials
+- User can sign up by if they are new to website
+- User can logout from navbar
+
+## SOCIALS
+
+---
+
+<a href="https://twitter.com/sainath_svm"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"/></a>
+<a href="https://www.linkedin.com/in/svm-sainath-90aa061aa/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+
+</ul>
