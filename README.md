@@ -34,7 +34,7 @@
 
 ---
 
-## About Joddtube
+## About JODDTube
 
 JODDTube is a video library application where you can like videos, add videos to watch later, create your playlist and has history to keep a track of your recently watched videos. JODDTube is publicly hosted on vercel at [https://joddtube.vercel.app/](https://joddtube.vercel.app/)
 
@@ -69,7 +69,7 @@ Install the necessary dependencies.
 npm install
 ```
 
-`joddtube` uses `mockbee's` mockbackend.
+`JODDTube` uses `mockbee's` mockbackend.
 Create an environment variable inside .env file in the root of the project with the below code.
 
 ```
