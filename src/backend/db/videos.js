@@ -26,6 +26,7 @@ export const videos = [
     length: "8:00",
     verified: true,
     subscribers: "1.2M",
+    date: new Date(2022, 4, 16),
   },
 
   {
@@ -44,6 +45,7 @@ export const videos = [
     length: "10:41",
     verified: true,
     subscribers: "678K",
+    date: new Date(2022, 4, 24),
   },
   {
     _id: uuid(),
@@ -60,6 +62,7 @@ export const videos = [
     length: "1:29:56",
     verified: false,
     subscribers: "231K",
+    date: new Date(2021, 3, 18),
   },
   {
     _id: uuid(),
@@ -76,7 +79,9 @@ export const videos = [
     uploaded: "1 days ago",
     length: "24:51",
     verified: true,
-    subscribers: "405K"
+    subscribers: "405K",
+    date: new Date(2022, 4, 25),
+
   },
   {
     _id: uuid(),
@@ -92,7 +97,8 @@ export const videos = [
     uploaded: "16 hours ago",
     length: "4:36",
     verified: true,
-    subscribers: "440K"
+    subscribers: "440K",
+    date: new Date(2022, 4, 26),
   },
   {
     _id: uuid(),
@@ -108,7 +114,8 @@ export const videos = [
     uploaded: "3 years ago",
     length: "1:03:13",
     verified: true,
-    subscribers: "760K"
+    subscribers: "760K",
+    date: new Date(2019, 8, 5),
   },
   {
     _id: uuid(),
@@ -127,7 +134,8 @@ export const videos = [
     uploaded: "1 month ago",
     length: "5:52:02",
     verified: true,
-    subscribers: "450K"
+    subscribers: "450K",
+    date: new Date(2022, 3, 16),
   },
   {
     _id: uuid(),
@@ -145,7 +153,8 @@ export const videos = [
     uploaded: "4 hours ago",
     length: "12:32",
     verified: true,
-    subscribers: "678K"
+    subscribers: "678K",
+    date: new Date(2022, 4, 27),
   },
 
 ];

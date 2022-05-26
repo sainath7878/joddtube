@@ -14,7 +14,6 @@ function VideoCard(video) {
   const {
     _id,
     imgSrc,
-    name,
     thumbnail,
     title,
     creator,
@@ -84,6 +83,7 @@ function VideoCard(video) {
           <p>{uploaded}</p>
         </div>
       </Link>
+
       <span
         className={styles.moreOption}
         ref={moreOptionsRef}

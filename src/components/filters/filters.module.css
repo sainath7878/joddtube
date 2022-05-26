@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+
+  margin-bottom: 2rem;
 }
 
 .btn {
@@ -12,6 +14,36 @@
   background-color: transparent;
   color: var(--SECONDARY-COLOR);
   border: 1px solid var(--SECONDARY-COLOR);
+}
+
+.sort {
+  position: relative;
+}
+
+.sortContainer {
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  z-index: var(--Z-INDEX-10);
+
+  width: 20rem;
+  border-radius: 5px;
+  background-color: var(--COLOR-CARD-BACKGROUND);
+  overflow: hidden;
+}
+
+.sortListItem {
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.sortListItem:nth-child(1) {
+  border-bottom: 1px solid var(--SECONDARY-COLOR);
+}
+
+.sortListItem:hover {
+  background-color: var(--SECONDARY-COLOR);
 }
 
 @media only screen and (max-width: 768px) {

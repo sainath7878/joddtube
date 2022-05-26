@@ -56,6 +56,6 @@ ul {
     position: fixed;
     top: 7rem;
     left: 0;
-    z-index: var(--Z-INDEX-10);
+    z-index: var(--Z-INDEX-20);
   }
 }
