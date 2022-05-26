@@ -3,7 +3,7 @@ import { VideoCard, Filters } from "components/index";
 import { useScrollToTop, useFetch, useDocumentTitle } from "hooks/index";
 import { RotatingLines } from "react-loader-spinner";
 import { useState } from "react";
-import { getFilteredData } from "utils";
+import { getFilteredData, getSortedData } from "utils";
 import { useAuth } from "context";
 
 function LandingPage() {
@@ -11,8 +11,11 @@ function LandingPage() {
   const { videos } = useFetch("api/videos");
 
   const [filters, setFilters] = useState("All");
+  const [sortBy, setSortBy] = useState("");
 
   const filteredData = getFilteredData(videos, filters);
+  const sortedData = getSortedData(filteredData, sortBy);
+
   const {
     authState: { loading },
   } = useAuth();
@@ -22,7 +25,11 @@ function LandingPage() {
   return (
     <>
       <div className={styles.filterContainer}>
-        <Filters filters={filters} setFilters={setFilters} />
+        <Filters
+          filters={filters}
+          setFilters={setFilters}
+          setSortBy={setSortBy}
+        />
       </div>
       <div className={styles.allVideos}>
         {loading ? (
@@ -30,8 +37,8 @@ function LandingPage() {
             <RotatingLines width="100" strokeColor="#a40ae0" />
           </div>
         ) : (
-          filteredData &&
-          filteredData.map(
+          sortedData &&
+          sortedData.map(
             ({
               _id,
               imgSrc,

@@ -1,5 +1,3 @@
-import { PlayListModal } from "components"
-
 const initialPlayListState = {
     playlists: []
 }

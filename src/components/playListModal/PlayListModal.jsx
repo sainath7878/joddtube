@@ -22,7 +22,7 @@ function PlayListModal() {
   const { video } = showPlayListModal;
 
   const submitHandler = ({ title }) => {
-    if (!title) {
+    if (!title || title.trim().length === 0) {
       toast.error("Title cannot be empty");
     } else {
       createPlayListHandler(playListData, video);

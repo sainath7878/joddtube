@@ -1,6 +1,7 @@
 .cardContainer {
   max-width: 30rem;
   position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
 .card {
@@ -70,6 +71,9 @@
 
 .card:hover {
   transform: translateY(0);
+}
+
+.cardContainer:hover {
   transform: scale(1.03);
 }
 

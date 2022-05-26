@@ -19,7 +19,12 @@ function VideoPage() {
   const { setShowPlayListModal } = usePlayList();
 
   const {
-    videoState: { likedVideos, watchLaterVideos, historyVideos },
+    videoState: {
+      likedVideos,
+      watchLaterVideos,
+      historyVideos,
+      notes: fromContext,
+    },
     likeHandler,
     unLikeHandler,
     addToWatchLaterHandler,
@@ -29,6 +34,18 @@ function VideoPage() {
   const {
     authState: { loading, encodedToken },
   } = useAuth();
+
+  const notes = useFetch(`/api/user/notes/${videoId}`, {
+    headers: {
+      authorization: encodedToken,
+    },
+  });
+
+  useEffect(() => {
+    videoDispatch({ type: "SET_NOTES", payload: { notes } });
+  }, [notes]);
+
+  console.log(fromContext);
 
   useEffect(() => {
     if (!historyVideos.some((item) => item._id === videoId) && video) {
