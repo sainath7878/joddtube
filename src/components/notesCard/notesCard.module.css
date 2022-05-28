@@ -1,0 +1,22 @@
+.notedCardContainer {
+  background-color: var(--COLOR-CARD-BACKGROUND);
+  width: 60%;
+  padding: 2rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cta {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .notedCardContainer {
+    width: 100%;
+  }
+}

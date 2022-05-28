@@ -17,7 +17,6 @@ export const removeAllNotesForVideoHandler = function (schema, request) {
             return item;
         }
         );
-        console.log(newNotes, user.notes)
         this.db.users.update({ notes: newNotes });
         return new Response(200, {}, { notes: newNotes });
     }
@@ -84,7 +83,6 @@ export const updateNoteHandler = function (schema, request) {
     if (user) {
         const { videoId, noteId } = request.params;
         const { editedNote } = JSON.parse(request.requestBody);
-        console.log(editedNote);
         const videoNotes = user.notes.find(item => item.videoId === videoId);
         const updatedNotes = videoNotes.notes.map(note =>
             note.id === noteId ? { ...editedNote, updatedAt: formatDate() } : note);
