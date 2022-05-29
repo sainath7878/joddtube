@@ -14,7 +14,7 @@ const videoReducer = (videoState, { type, payload }) => {
         case "SET_HISTORY_VIDEOS":
             return { ...videoState, historyVideos: payload.historyVideos }
         case "SET_NOTES":
-            return { ...videoState, notes: [payload.notes] }
+            return { ...videoState, notes: payload.notes }
         default:
             throw Error("Undefined Action")
     }

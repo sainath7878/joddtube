@@ -77,7 +77,7 @@ export function makeServer({ environment = "development" } = {}) {
           watchlater: [],
           history: [],
           playlists: [],
-          notesManagement: [],
+          notes: [],
         })
       );
     },

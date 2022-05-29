@@ -1,0 +1,67 @@
+.notesForm {
+  width: 60%;
+}
+
+.notesForm > * {
+  margin-bottom: 2rem;
+}
+
+.cta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trashBtn {
+  background-color: var(--SECONDARY-COLOR);
+  color: var(--COLOR-PRIMARY);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trashBtn:hover {
+  background-color: #c247f3;
+}
+
+.trashBtn > * {
+  margin-right: 1rem;
+}
+
+.fieldset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.legend {
+  font-size: 1.8rem;
+}
+
+.formInput {
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: var(--COLOR-PRIMARY);
+  font-size: 1.7rem;
+  padding: 3px 5px;
+}
+
+.addNoteBtn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--SECONDARY-COLOR);
+  color: var(--COLOR-PRIMARY);
+  font-size: 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .notesForm {
+    width: 100%;
+  }
+}

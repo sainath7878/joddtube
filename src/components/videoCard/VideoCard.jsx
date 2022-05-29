@@ -4,6 +4,7 @@ import {
   BiCheckCircleFill,
   PhClock,
   BiPlaylist,
+  BiHeartFill,
 } from "assets/icons/Icons";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -45,7 +46,9 @@ function VideoCard(video) {
   const {
     addToWatchLaterHandler,
     removeFromWatchlaterHandler,
-    videoState: { watchLaterVideos },
+    videoState: { watchLaterVideos, likedVideos },
+    unLikeHandler,
+    likeHandler,
   } = useVideos();
 
   const { setShowPlayListModal } = usePlayList();
@@ -125,6 +128,23 @@ function VideoCard(video) {
               <BiPlaylist />
               <span>Add to Playlist</span>
             </li>
+            {likedVideos.some((item) => item._id === video._id) ? (
+              <li
+                className={styles.moreOptionsListItem}
+                onClick={() => unLikeHandler(video)}
+              >
+                <BiHeartFill className={styles.liked} />
+                <span>Liked</span>
+              </li>
+            ) : (
+              <li
+                className={styles.moreOptionsListItem}
+                onClick={() => likeHandler(video)}
+              >
+                <BiHeartFill />
+                <span>Like</span>
+              </li>
+            )}
           </ul>
         </div>
       )}

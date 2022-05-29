@@ -81,7 +81,7 @@
 
 .moreOptionsContainer {
   position: absolute;
-  bottom: -2rem;
+  bottom: -4.5rem;
   right: 0.5rem;
   z-index: var(--Z-INDEX-10);
 
@@ -97,14 +97,19 @@
   font-size: 1.6rem;
   cursor: pointer;
   padding: 1rem;
+  border-bottom: 1px solid var(--SECONDARY-COLOR);
 }
 
-.moreOptionsListItem:nth-child(1) {
-  border-bottom: 1px solid var(--SECONDARY-COLOR);
+.moreOptionsListItem:nth-last-child(1) {
+  border-bottom: none;
 }
 
 .moreOptionsContainer li > span {
   margin-left: 10px;
+}
+
+.liked {
+  color: var(--COLOR-LIKED);
 }
 
 .card:hover {
@@ -113,6 +118,7 @@
 
 .cardContainer:hover {
   transform: scale(1.03);
+  z-index: var(--Z-INDEX-20);
 }
 
 @media only screen and (max-width: 768px) {

@@ -44,13 +44,19 @@ function Filters({ filters, setFilters, setSortBy }) {
           <div className={styles.sortContainer}>
             <p
               className={styles.sortListItem}
-              onClick={() => setSortBy(() => LATEST)}
+              onClick={() => {
+                setSortBy(() => LATEST);
+                setShowSortContainer((prev) => !prev);
+              }}
             >
               LATEST
             </p>
             <p
               className={styles.sortListItem}
-              onClick={() => setSortBy(() => OLDEST)}
+              onClick={() => {
+                setSortBy(() => OLDEST);
+                setShowSortContainer((prev) => !prev);
+              }}
             >
               OLDEST
             </p>

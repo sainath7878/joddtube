@@ -11,6 +11,7 @@ import { useVideos, useAuth, usePlayList } from "context";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { NotesCard, NotesForm } from "components";
 
 function VideoPage() {
   const { videoId } = useParams();
@@ -19,12 +20,7 @@ function VideoPage() {
   const { setShowPlayListModal } = usePlayList();
 
   const {
-    videoState: {
-      likedVideos,
-      watchLaterVideos,
-      historyVideos,
-      notes: fromContext,
-    },
+    videoState: { likedVideos, watchLaterVideos, historyVideos, notes },
     likeHandler,
     unLikeHandler,
     addToWatchLaterHandler,
@@ -34,18 +30,6 @@ function VideoPage() {
   const {
     authState: { loading, encodedToken },
   } = useAuth();
-
-  const notes = useFetch(`/api/user/notes/${videoId}`, {
-    headers: {
-      authorization: encodedToken,
-    },
-  });
-
-  useEffect(() => {
-    videoDispatch({ type: "SET_NOTES", payload: { notes } });
-  }, [notes]);
-
-  console.log(fromContext);
 
   useEffect(() => {
     if (!historyVideos.some((item) => item._id === videoId) && video) {
@@ -87,7 +71,7 @@ function VideoPage() {
           <div className={styles.videoContainer}>
             <iframe
               className={styles.video}
-              src={`https://www.youtube.com/embed/${video.url}?autoplay=1`}
+              src={`https://www.youtube.com/embed/${video.url}?autoplay=0`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -172,6 +156,17 @@ function VideoPage() {
               </div>
               <h2 className={styles.videoDescription}>{video.description}</h2>
             </div>
+            {encodedToken && (
+              <>
+                {" "}
+                <NotesForm />
+                {notes && notes.length > 0 && (
+                  <NotesCard
+                    note={notes.filter((note) => note.videoId === videoId)[0]}
+                  />
+                )}
+              </>
+            )}
           </div>
         )
       )}
