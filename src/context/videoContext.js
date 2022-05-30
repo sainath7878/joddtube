@@ -17,7 +17,6 @@ function VideoProvider({ children }) {
         id: ""
     });
 
-
     const likeHandler = async (video) => {
         if (encodedToken) {
             try {

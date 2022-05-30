@@ -2,7 +2,8 @@ const initialVideoState = {
     likedVideos: [],
     watchLaterVideos: [],
     historyVideos: [],
-    notes: []
+    notes: [],
+    searchFilter: "",
 }
 
 const videoReducer = (videoState, { type, payload }) => {
@@ -15,6 +16,8 @@ const videoReducer = (videoState, { type, payload }) => {
             return { ...videoState, historyVideos: payload.historyVideos }
         case "SET_NOTES":
             return { ...videoState, notes: payload.notes }
+        case "SET_SEARCH":
+            return { ...videoState, searchFilter: payload.searchData }
         default:
             throw Error("Undefined Action")
     }
