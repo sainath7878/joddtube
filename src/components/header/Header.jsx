@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
 import {
@@ -6,13 +6,35 @@ import {
   BiPersonCircle,
   IcBaselineLogout,
 } from "assets/icons/Icons.jsx";
-import { useAuth, useSidebar } from "context";
+import { useAuth, useSidebar, useVideos } from "context";
+import { BiSearch } from "assets/icons/Icons";
 
 function Header() {
   const { setShowSidebar } = useSidebar();
   const {
-    authState: { encodedToken }, logoutHandler
+    authState: { encodedToken },
+    logoutHandler,
   } = useAuth();
+  const timerId = useRef(null);
+  const [searchData, setSearchData] = useState("");
+  const [counter, setCounter] = useState(0);
+
+  const { videoDispatch } = useVideos();
+
+  const setSearch = () => {
+    videoDispatch({ type: "SET_SEARCH", payload: { searchData } });
+    setCounter((prev) => prev + 1);
+  };
+
+  const debounce = function (callback, delay = 500) {
+    return function () {
+      clearTimeout(timerId.current);
+      timerId.current = setTimeout(() => callback(), delay);
+    };
+  };
+
+  const debouncingMethod = debounce(setSearch, 500);
+
   return (
     <header className="header">
       <nav className="navigation d-flex">
@@ -31,6 +53,18 @@ function Header() {
           </Link>
         </div>
 
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search for videos"
+            className="form-input"
+            value={searchData}
+            onChange={(e) => setSearchData(() => e.target.value)}
+            onKeyUp={() => debouncingMethod()}
+          />
+          <BiSearch className="search-icon" />
+        </div>
+
         <div className="nav-section login">
           {encodedToken ? (
             <Link to="/">
@@ -46,6 +80,14 @@ function Header() {
           )}
         </div>
       </nav>
+      <div className="search-responsive">
+        <input
+          type="text"
+          placeholder="Search for videos"
+          className="form-input"
+        />
+        <BiSearch className="search-icon-responsive" />
+      </div>
     </header>
   );
 }

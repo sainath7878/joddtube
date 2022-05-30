@@ -3,17 +3,22 @@ import { VideoCard, Filters } from "components/index";
 import { useScrollToTop, useFetch, useDocumentTitle } from "hooks/index";
 import { RotatingLines } from "react-loader-spinner";
 import { useState } from "react";
-import { getFilteredData, getSortedData } from "utils";
-import { useAuth } from "context";
+import { getFilteredData, getSortedData, getSearchedData } from "utils";
+import { useAuth, useVideos } from "context";
 
 function LandingPage() {
   useScrollToTop();
   const { videos } = useFetch("api/videos");
 
+  const {
+    videoState: { searchFilter },
+  } = useVideos();
+
   const [filters, setFilters] = useState("All");
   const [sortBy, setSortBy] = useState("");
 
-  const filteredData = getFilteredData(videos, filters);
+  const searchedData = getSearchedData(videos, searchFilter);
+  const filteredData = getFilteredData(searchedData, filters);
   const sortedData = getSortedData(filteredData, sortBy);
 
   const {
@@ -36,8 +41,7 @@ function LandingPage() {
           <div className="loader">
             <RotatingLines width="100" strokeColor="#a40ae0" />
           </div>
-        ) : (
-          sortedData &&
+        ) : sortedData && sortedData.length > 0 ? (
           sortedData.map(
             ({
               _id,
@@ -66,6 +70,8 @@ function LandingPage() {
               />
             )
           )
+        ) : (
+          <h1 className="fs-l">No results found. Try applying other filters</h1>
         )}
       </div>
     </>

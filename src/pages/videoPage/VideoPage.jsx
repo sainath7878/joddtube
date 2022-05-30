@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { NotesCard, NotesForm } from "components";
+import {throttle} from "utils/index"
 
 function VideoPage() {
   const { videoId } = useParams();
@@ -32,7 +33,7 @@ function VideoPage() {
   } = useAuth();
 
   useEffect(() => {
-    if (!historyVideos.some((item) => item._id === videoId) && video) {
+    if (video && !historyVideos.some((item) => item._id === videoId)) {
       (async () => {
         try {
           const response = await axios.post(
@@ -59,6 +60,14 @@ function VideoPage() {
       })();
     }
   }, [video]);
+
+  let throttleLikeMethod = throttle(likeHandler, 1000);
+  let throttleunLikeMethod = throttle(unLikeHandler, 1000);
+  let throttleWatchLaterMethod = throttle(addToWatchLaterHandler, 1000);
+  let throttleRemoveFromWatchLaterMethod = throttle(
+    removeFromWatchlaterHandler,
+    1000
+  );
 
   return (
     <>
@@ -101,7 +110,7 @@ function VideoPage() {
                     {likedVideos.find((item) => item._id === video._id) ? (
                       <button
                         className={styles.activeBtn}
-                        onClick={() => unLikeHandler(video)}
+                        onClick={() => throttleunLikeMethod(video)}
                       >
                         <BiHeartFill className={styles.liked} />
                         Liked
@@ -109,7 +118,7 @@ function VideoPage() {
                     ) : (
                       <button
                         className={styles.activeBtn}
-                        onClick={() => likeHandler(video)}
+                        onClick={() => throttleLikeMethod(video)}
                       >
                         <BiHeartFill />
                         Like
@@ -136,7 +145,9 @@ function VideoPage() {
                   <div className={styles.btn}>
                     {watchLaterVideos.find((item) => item._id === video._id) ? (
                       <button
-                        onClick={() => removeFromWatchlaterHandler(video)}
+                        onClick={() =>
+                          throttleRemoveFromWatchLaterMethod(video)
+                        }
                         className={styles.activeBtn}
                       >
                         <BiClockFill />
@@ -144,7 +155,7 @@ function VideoPage() {
                       </button>
                     ) : (
                       <button
-                        onClick={() => addToWatchLaterHandler(video)}
+                        onClick={() => throttleWatchLaterMethod(video)}
                         className={styles.activeBtn}
                       >
                         <BiClockFill />
