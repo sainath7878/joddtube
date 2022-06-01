@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import {
   BiList,
@@ -17,13 +17,13 @@ function Header() {
   } = useAuth();
   const timerId = useRef(null);
   const [searchData, setSearchData] = useState("");
-  const [counter, setCounter] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const { videoDispatch } = useVideos();
 
   const setSearch = () => {
     videoDispatch({ type: "SET_SEARCH", payload: { searchData } });
-    setCounter((prev) => prev + 1);
   };
 
   const debounce = function (callback, delay = 500) {
@@ -59,7 +59,10 @@ function Header() {
             placeholder="Search for videos"
             className="form-input"
             value={searchData}
-            onChange={(e) => setSearchData(() => e.target.value)}
+            onChange={(e) => {
+              location.pathname !== "/" && navigate("/");
+              setSearchData(() => e.target.value);
+            }}
             onKeyUp={() => debouncingMethod()}
           />
           <BiSearch className="search-icon" />
